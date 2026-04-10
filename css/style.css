@@ -203,20 +203,19 @@ section { padding: clamp(64px, 8vw, 120px) 0; position: relative; }
   background: conic-gradient(from 0deg at 50% 50%, transparent, rgba(184, 198, 219, 0.15), transparent 30%);
   animation: spin 8s linear infinite;
 }
-.hero__visual-inner {
+.hero__visual-photo {
   position: relative;
-  width: 70%; aspect-ratio: 1;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 30% 30%, #E8EAF0, #B8C6DB 40%, #6a7a8c 70%, #2a3540);
-  box-shadow: inset 0 0 40px rgba(0,0,0,0.6), 0 0 80px rgba(184, 198, 219, 0.25);
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  filter: brightness(1.02) contrast(1.05);
 }
-.hero__visual-inner::after {
+.hero__visual::after {
   content: '';
-  position: absolute; inset: 20%;
-  border-radius: 50%;
-  background: radial-gradient(circle at 40% 40%, #F0F0F0, #B8C6DB 50%, #4a5560);
-  box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(10, 10, 15, 0.55) 100%);
+  z-index: 2;
+  pointer-events: none;
 }
 
 /* ---------- Services ---------- */
@@ -287,7 +286,7 @@ section { padding: clamp(64px, 8vw, 120px) 0; position: relative; }
 .portfolio__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .portfolio-item {
   position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
   border-radius: var(--radius);
   overflow: hidden;
   background: var(--bg-card);
@@ -296,54 +295,33 @@ section { padding: clamp(64px, 8vw, 120px) 0; position: relative; }
   transition: var(--transition);
 }
 .portfolio-item:hover { transform: translateY(-4px); border-color: var(--accent); }
-.portfolio-item__before,
-.portfolio-item__after {
+.portfolio-item:hover img { transform: scale(1.05); }
+.portfolio-item img {
   position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-head); font-weight: 800; font-size: 14px;
-  letter-spacing: 0.1em;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
 }
-.portfolio-item__before {
-  background: linear-gradient(135deg, #2a2a3e, #1a1a2e);
-  color: var(--text-secondary);
-}
-.portfolio-item__after {
-  background: linear-gradient(135deg, #B8C6DB, #E8EAF0, #6a7a8c);
-  color: #0a0a0f;
-  clip-path: inset(0 0 0 50%);
-}
-.portfolio-item__handle {
-  position: absolute;
-  top: 0; bottom: 0;
-  left: 50%;
-  width: 2px;
-  background: #fff;
-  transform: translateX(-50%);
+.portfolio-item::after {
+  content: '';
+  position: absolute; left: 0; right: 0; bottom: 0;
+  height: 50%;
+  background: linear-gradient(to top, rgba(10,10,15,0.9), rgba(10,10,15,0));
   pointer-events: none;
-}
-.portfolio-item__handle::after {
-  content: '↔';
-  position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 40px; height: 40px;
-  background: #fff;
-  color: var(--accent);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 800; font-size: 20px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+  z-index: 1;
 }
 .portfolio-item__caption {
   position: absolute;
   left: 16px; right: 16px; bottom: 16px;
-  font-size: 13px;
-  color: var(--text-secondary);
+  font-size: 14px;
+  color: #fff;
+  font-weight: 600;
   z-index: 2;
 }
-.portfolio-item .label-before,
-.portfolio-item .label-after {
+.portfolio-item__tag {
   position: absolute;
-  top: 16px;
+  top: 16px; left: 16px;
   padding: 6px 12px;
   background: rgba(10, 10, 15, 0.7);
   backdrop-filter: blur(8px);
@@ -351,11 +329,11 @@ section { padding: clamp(64px, 8vw, 120px) 0; position: relative; }
   font-family: var(--font-head);
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
+  color: var(--chrome-2);
   z-index: 3;
+  text-transform: uppercase;
 }
-.portfolio-item .label-before { left: 16px; color: var(--text-secondary); }
-.portfolio-item .label-after { right: 16px; color: var(--chrome-2); }
 
 /* ---------- Reviews ---------- */
 .reviews__track { display: flex; gap: 24px; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; scrollbar-width: thin; }
