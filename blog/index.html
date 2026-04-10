@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0a0f">
+  <title>Блог о хромировании — статьи, советы, гид по выбору | LUMO</title>
+  <meta name="description" content="Статьи о хромировании пластика, дисков, антихроме. Советы по уходу, ответы на частые вопросы, сравнения технологий. Блог мастерской LUMO в Москве.">
+  <link rel="canonical" href="https://lumo-chrome.ru/blog/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/animations.css">
+  <style>
+    .blog-card { display: block; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: var(--transition); }
+    .blog-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .blog-card__cover { aspect-ratio: 16/9; background: linear-gradient(135deg, #1a1a2e, #2a2a3e); display: flex; align-items: center; justify-content: center; font-size: 48px; }
+    .blog-card__body { padding: 24px; }
+    .blog-card__tag { display: inline-block; padding: 4px 12px; background: rgba(192,57,43,0.15); border: 1px solid rgba(192,57,43,0.3); border-radius: 50px; color: var(--accent); font-size: 12px; font-family: var(--font-head); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+    .blog-card h3 { font-size: 20px; margin-bottom: 12px; }
+    .blog-card p { color: var(--text-secondary); font-size: 14px; margin-bottom: 16px; }
+    .blog-card__meta { color: var(--text-secondary); font-size: 12px; }
+  </style>
+</head>
+<body>
+
+<header class="header scrolled">
+  <div class="container header__inner">
+    <a href="/" class="logo"><span class="logo__dot"></span>LUMO</a>
+    <nav class="nav">
+      <a href="/hromirovanie-plastika/">Пластик</a><a href="/hromirovanie-diskov/">Диски</a><a href="/antihrom/">Антихром</a><a href="/portfolio/">Работы</a><a href="/ceny/">Цены</a><a href="/kontakty/">Контакты</a>
+    </nav>
+    <div class="header__cta">
+      <a href="tel:+74951234567" class="header__phone">+7 (495) 123-45-67</a>
+      <a href="/#lead-form" class="btn btn--primary">Заказать</a>
+      <button class="burger" aria-label="Меню"><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" style="min-height:auto;padding-top:160px;padding-bottom:60px;">
+  <div class="container">
+    <div class="reveal" style="max-width:860px;">
+      <nav style="color:var(--text-secondary);font-size:14px;margin-bottom:20px;"><a href="/" style="color:var(--text-secondary);">Главная</a> &nbsp;/&nbsp; Блог</nav>
+      <h1><span class="chrome-text">Блог</span> о хромировании</h1>
+      <p class="hero__subtitle">Полезные статьи, разбор технологий, ответы на вопросы клиентов. Пишем как есть — без маркетинговой воды.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="services__grid">
+      <a href="/blog/hromirovanie-reshetki/" class="blog-card reveal">
+        <div class="blog-card__cover">🏎️</div>
+        <div class="blog-card__body">
+          <span class="blog-card__tag">Услуги</span>
+          <h3>Хромирование решётки радиатора: полный гайд</h3>
+          <p>Как выбрать метод, что влияет на цену, сколько служит покрытие, какие решётки не берём — отвечаем на все вопросы.</p>
+          <div class="blog-card__meta">5 мин чтения · Апрель 2026</div>
+        </div>
+      </a>
+      <a href="/blog/vzdutie-hroma/" class="blog-card reveal" data-delay="1">
+        <div class="blog-card__cover">⚠️</div>
+        <div class="blog-card__body">
+          <span class="blog-card__tag">Ремонт</span>
+          <h3>Вздулся хром на пластике — что делать?</h3>
+          <p>Причины вздутия заводского хрома, можно ли восстановить деталь и почему это дешевле, чем замена оригинала.</p>
+          <div class="blog-card__meta">4 мин чтения · Март 2026</div>
+        </div>
+      </a>
+      <a href="/blog/antihrom-ili-plenka/" class="blog-card reveal" data-delay="2">
+        <div class="blog-card__cover">🆚</div>
+        <div class="blog-card__body">
+          <span class="blog-card__tag">Сравнение</span>
+          <h3>Антихром или плёнка — что выбрать в 2026 году</h3>
+          <p>Сравниваем химическое снятие хрома с оклейкой виниловой плёнкой. Сроки службы, цена, внешний вид, эксплуатация.</p>
+          <div class="blog-card__meta">6 мин чтения · Март 2026</div>
+        </div>
+      </a>
+      <a href="/blog/hromirovanie-diskov-svoimi-rukami/" class="blog-card reveal">
+        <div class="blog-card__cover">🛞</div>
+        <div class="blog-card__body">
+          <span class="blog-card__tag">Мифы</span>
+          <h3>Хромирование дисков своими руками — почему не стоит</h3>
+          <p>Разбираем DIY-наборы «жидкого хрома» из интернета и объясняем, почему настоящий хром невозможно сделать без гальваники.</p>
+          <div class="blog-card__meta">7 мин чтения · Февраль 2026</div>
+        </div>
+      </a>
+      <a href="/blog/kak-uhazhivat-za-hromom/" class="blog-card reveal" data-delay="1">
+        <div class="blog-card__cover">✨</div>
+        <div class="blog-card__body">
+          <span class="blog-card__tag">Уход</span>
+          <h3>Как ухаживать за хромированными деталями</h3>
+          <p>Чем мыть, какой полиролью пользоваться, каких ошибок избегать зимой. Сохраняем гарантийный блеск на годы.</p>
+          <div class="blog-card__meta">3 мин чтения · Февраль 2026</div>
+        </div>
+      </a>
+      <a href="/blog/hromirovanie-moto/" class="blog-card reveal" data-delay="2">
+        <div class="blog-card__cover">🏍️</div>
+        <div class="blog-card__body">
+          <span class="blog-card__tag">Мотоциклы</span>
+          <h3>Хромирование мотодеталей — опыт работы с Harley и BMW</h3>
+          <p>Делимся опытом восстановления и тюнинга мотоциклетных деталей. Особенности подготовки и долговечность.</p>
+          <div class="blog-card__meta">5 мин чтения · Январь 2026</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div><a href="/" class="logo"><span class="logo__dot"></span>LUMO</a><p>Профессиональное хромирование в Москве с 2014 года.</p></div>
+      <div><h4>Услуги</h4><ul><li><a href="/hromirovanie-plastika/">Пластик</a></li><li><a href="/hromirovanie-diskov/">Диски</a></li><li><a href="/antihrom/">Антихром</a></li></ul></div>
+      <div><h4>Компания</h4><ul><li><a href="/portfolio/">Портфолио</a></li><li><a href="/ceny/">Цены</a></li><li><a href="/kontakty/">Контакты</a></li></ul></div>
+      <div><h4>Контакты</h4><ul><li><a href="tel:+74951234567">+7 (495) 123-45-67</a></li><li><a href="mailto:order@lumo-chrome.ru">order@lumo-chrome.ru</a></li></ul></div>
+    </div>
+    <div class="footer__bottom"><div>© <span data-year>2026</span> LUMO</div></div>
+  </div>
+</footer>
+
+<div class="messenger">
+  <div class="messenger__menu">
+    <a class="messenger__btn messenger__btn--wa" href="https://wa.me/74951234567" target="_blank" rel="noopener">WhatsApp</a>
+    <a class="messenger__btn messenger__btn--tg" href="https://t.me/lumo_chrome" target="_blank" rel="noopener">Telegram</a>
+  </div>
+  <button class="messenger__toggle" aria-label="Написать"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></button>
+</div>
+
+<script src="/js/analytics.js" defer></script>
+<script src="/js/main.js" defer></script>
+</body>
+</html>
