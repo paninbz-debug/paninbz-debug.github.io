@@ -284,3 +284,11 @@ h1,h2,h3{font-family:'Unbounded',sans-serif;font-weight:700;letter-spacing:-.02e
   .foot{grid-template-columns:1fr;padding:48px 24px 32px}
   .foot__contacts{align-items:flex-start}
 }
+@media (max-width:480px){
+  .hero,.story,.how,.works,.prices,.cta,.foot{padding-left:16px;padding-right:16px}
+  .top{padding:16px}
+  .hero__title{font-size:clamp(48px,15vw,80px)}
+  .works__grid{grid-template-columns:1fr;grid-auto-rows:200px}
+  .pill--lg{padding:16px 22px;font-size:14px}
+  .cta__box{padding:32px 16px;border-radius:16px}
+}
