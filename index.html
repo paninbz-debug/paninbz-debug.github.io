@@ -274,116 +274,139 @@
 
         <!-- Panel: Plastic -->
         <div class="calculator__panel active" data-tab="plastic">
-          <div class="calc-field">
-            <label>Тип детали</label>
-            <select name="p-type">
-              <option value="grill">Решётка радиатора</option>
-              <option value="mirror">Зеркала (пара)</option>
-              <option value="molding">Молдинги (комплект)</option>
-              <option value="overlay">Накладки</option>
-              <option value="emblem">Эмблема / значок</option>
-              <option value="handle">Ручка двери</option>
-              <option value="bumper">Элементы бампера</option>
-              <option value="moto">Мотодетали</option>
-              <option value="other">Другое</option>
-            </select>
-          </div>
-          <div class="calc-field">
-            <label>Размер детали</label>
-            <div class="calc-options">
-              <label><input type="radio" name="p-size" value="small"><span>До 20 см</span></label>
-              <label><input type="radio" name="p-size" value="medium" checked><span>20–50 см</span></label>
-              <label><input type="radio" name="p-size" value="large"><span>50+ см</span></label>
-            </div>
-          </div>
-          <div class="calc-field">
-            <label>Количество деталей</label>
-            <input type="number" name="p-qty" min="1" max="20" value="1">
-          </div>
-          <div class="calc-field">
-            <label>Цвет хрома</label>
-            <div class="calc-options">
-              <label><input type="radio" name="p-color" value="silver" checked><span>Серебро</span></label>
-              <label><input type="radio" name="p-color" value="gold"><span>Золото +20%</span></label>
-              <label><input type="radio" name="p-color" value="black"><span>Чёрный +30%</span></label>
-              <label><input type="radio" name="p-color" value="bronze"><span>Бронза +25%</span></label>
+          <button class="calculator__accordion-btn" type="button">
+            <span>Хромирование пластика</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="calculator__panel-inner">
+            <div class="calc-fields">
+              <div class="calc-field">
+                <label>Тип детали</label>
+                <select name="p-type">
+                  <option value="grill">Решётка радиатора</option>
+                  <option value="mirrors">Зеркала (пара)</option>
+                  <option value="molding">Молдинги</option>
+                  <option value="overlay">Накладки</option>
+                  <option value="moto">Мотодетали</option>
+                  <option value="small">Мелкие детали</option>
+                </select>
+              </div>
+              <div class="calc-field">
+                <label>Размер</label>
+                <div class="calc-options">
+                  <label><input type="radio" name="p-size" value="small" checked><span>S (до 20 см)</span></label>
+                  <label><input type="radio" name="p-size" value="medium"><span>M (20–50 см)</span></label>
+                  <label class="calc-option--large"><input type="radio" name="p-size" value="large"><span>L (50+ см)</span></label>
+                </div>
+              </div>
+              <div class="calc-field">
+                <label>Количество</label>
+                <input type="number" name="p-qty" min="1" max="20" value="1">
+              </div>
+              <div class="calc-field">
+                <label>Цвет покрытия</label>
+                <div class="calc-options">
+                  <label><input type="radio" name="p-color" value="silver" checked><span>Серебро (стандарт)</span></label>
+                  <label><input type="radio" name="p-color" value="gold"><span>Золото (+20%)</span></label>
+                  <label><input type="radio" name="p-color" value="blackchrome"><span>Чёрный хром (+30%)</span></label>
+                  <label><input type="radio" name="p-color" value="bronze"><span>Бронза (+25%)</span></label>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Panel: Discs -->
         <div class="calculator__panel" data-tab="discs">
-          <div class="calc-field">
-            <label>Диаметр диска</label>
-            <select name="d-dia">
-              <option value="R15">R15</option>
-              <option value="R16">R16</option>
-              <option value="R17" selected>R17</option>
-              <option value="R18">R18</option>
-              <option value="R19">R19</option>
-              <option value="R20">R20</option>
-              <option value="R21">R21</option>
-              <option value="R22">R22</option>
-            </select>
-          </div>
-          <div class="calc-field">
-            <label>Тип диска</label>
-            <div class="calc-options">
-              <label><input type="radio" name="d-type" value="stamp"><span>Штампованный</span></label>
-              <label><input type="radio" name="d-type" value="cast" checked><span>Литой +10%</span></label>
-              <label><input type="radio" name="d-type" value="forged"><span>Кованый +20%</span></label>
-            </div>
-          </div>
-          <div class="calc-field">
-            <label>Количество дисков</label>
-            <div class="calc-options">
-              <label><input type="radio" name="d-qty" value="1" checked><span>1 диск</span></label>
-              <label><input type="radio" name="d-qty" value="2"><span>2 диска</span></label>
-              <label><input type="radio" name="d-qty" value="4"><span>4 диска −10%</span></label>
-            </div>
-          </div>
-          <div class="calc-field">
-            <label>Состояние</label>
-            <div class="calc-options">
-              <label><input type="radio" name="d-cond" value="good" checked><span>Хорошее</span></label>
-              <label><input type="radio" name="d-cond" value="polish"><span>Нужна полировка</span></label>
+          <button class="calculator__accordion-btn" type="button">
+            <span>Хромирование дисков</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="calculator__panel-inner">
+            <div class="calc-fields">
+              <div class="calc-field">
+                <label>Диаметр</label>
+                <select name="d-dia">
+                  <option value="R15">R15</option>
+                  <option value="R16">R16</option>
+                  <option value="R17" selected>R17</option>
+                  <option value="R18">R18</option>
+                  <option value="R19">R19</option>
+                  <option value="R20">R20</option>
+                  <option value="R21">R21</option>
+                  <option value="R22">R22</option>
+                </select>
+                <span class="calc-hint">Цена указана за 1 диск</span>
+              </div>
+              <div class="calc-field">
+                <label>Тип диска</label>
+                <div class="calc-options">
+                  <label><input type="radio" name="d-type" value="stamped" checked><span>Штампованный</span></label>
+                  <label><input type="radio" name="d-type" value="cast"><span>Литой (+10%)</span></label>
+                  <label><input type="radio" name="d-type" value="forged"><span>Кованый (+20%)</span></label>
+                </div>
+              </div>
+              <div class="calc-field">
+                <label>Количество</label>
+                <div class="calc-options">
+                  <label><input type="radio" name="d-qty" value="1" checked><span>1 диск</span></label>
+                  <label><input type="radio" name="d-qty" value="2"><span>2 диска</span></label>
+                  <label><input type="radio" name="d-qty" value="4"><span>4 диска (скидка 10%)</span></label>
+                </div>
+              </div>
+              <div class="calc-field">
+                <label>Состояние</label>
+                <div class="calc-options">
+                  <label><input type="radio" name="d-cond" value="good" checked><span>Хорошее</span></label>
+                  <label><input type="radio" name="d-cond" value="polish"><span>Требует полировки (+500&#8381;/диск)</span></label>
+                  <label><input type="radio" name="d-cond" value="defects"><span>Есть дефекты</span></label>
+                </div>
+                <div class="calc-notice" id="defects-notice" hidden>Окончательная стоимость определяется при осмотре.</div>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Panel: Antichrome -->
         <div class="calculator__panel" data-tab="antichrome">
-          <div class="calc-field">
-            <label>Тип детали</label>
-            <select name="a-type">
-              <option value="grill">Решётка радиатора</option>
-              <option value="molding">Молдинги</option>
-              <option value="overlay">Накладки</option>
-              <option value="frame">Рамки</option>
-              <option value="other">Другое</option>
-            </select>
-          </div>
-          <div class="calc-field">
-            <label>Цвет покраски</label>
-            <div class="calc-options">
-              <label><input type="radio" name="a-paint" value="matte" checked><span>Чёрный матовый</span></label>
-              <label><input type="radio" name="a-paint" value="gloss"><span>Чёрный глянцевый</span></label>
-              <label><input type="radio" name="a-paint" value="body"><span>В цвет кузова</span></label>
-              <label><input type="radio" name="a-paint" value="ral"><span>RAL</span></label>
+          <button class="calculator__accordion-btn" type="button">
+            <span>Антихром</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="calculator__panel-inner">
+            <div class="calc-fields">
+              <div class="calc-field">
+                <label>Тип детали</label>
+                <select name="a-type">
+                  <option value="grill">Решётка</option>
+                  <option value="molding">Молдинги</option>
+                  <option value="overlay">Накладки</option>
+                  <option value="small">Мелкие детали</option>
+                </select>
+              </div>
+              <div class="calc-field">
+                <label>Цвет покраски</label>
+                <select name="a-paint">
+                  <option value="matte">Чёрный матовый</option>
+                  <option value="gloss">Чёрный глянцевый</option>
+                  <option value="body">В цвет кузова (+500&#8381;)</option>
+                  <option value="ral">Другой RAL (+500&#8381;)</option>
+                </select>
+              </div>
+              <div class="calc-field">
+                <label>Количество</label>
+                <input type="number" name="a-qty" min="1" max="20" value="1">
+              </div>
             </div>
-          </div>
-          <div class="calc-field">
-            <label>Количество</label>
-            <input type="number" name="a-qty" min="1" max="20" value="1">
           </div>
         </div>
 
         <!-- Result -->
-        <div class="calc-result">
+        <div class="calc-result" id="calc-result">
           <div class="calc-result__label">Предварительная стоимость</div>
-          <div class="calc-result__price">от <span>0 ₽</span> до <span>0 ₽</span></div>
-          <div class="calc-result__note">Точная стоимость — после осмотра детали. Расчёт предварительный.</div>
-          <button type="button" class="btn btn--primary calc-result__cta">Получить точный расчёт</button>
+          <div class="calc-result__price" id="calc-price">от <span>0</span> до <span>0</span> &#8381;</div>
+          <div class="calc-result__note">Точная стоимость определяется после осмотра детали. Расчёт является предварительным.</div>
+          <button type="button" class="btn btn--primary calc-result__cta" id="calc-cta">Получить точный расчёт</button>
         </div>
       </div>
     </div>
@@ -750,6 +773,38 @@
     </div>
   </div>
 </footer>
+
+<!-- ============ CALCULATOR MODAL ============ -->
+<div class="calc-modal" id="calc-modal">
+  <div class="calc-modal__overlay"></div>
+  <div class="calc-modal__content">
+    <button class="calc-modal__close" type="button" aria-label="Закрыть">&times;</button>
+    <h3 class="calc-modal__title">Получить точный расчёт</h3>
+    <p class="calc-modal__subtitle">Оставьте контакты — мы перезвоним с точной ценой за 15 минут</p>
+    <div class="calc-modal__summary" id="calc-modal-summary"></div>
+    <form class="calc-modal__form" id="calc-modal-form">
+      <div class="calc-modal__fields">
+        <div class="form-field">
+          <input type="text" name="name" placeholder="Ваше имя" required>
+        </div>
+        <div class="form-field">
+          <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
+        </div>
+        <input type="hidden" name="calc-data" id="calc-data-input">
+        <label class="form-agree">
+          <input type="checkbox" required>
+          <span>Даю согласие на обработку персональных данных в соответствии с <a href="/privacy/">политикой конфиденциальности</a></span>
+        </label>
+        <button type="submit" class="btn btn--primary btn--block">Отправить заявку</button>
+      </div>
+      <div class="form__success">
+        <h3>Заявка принята!</h3>
+        <p>Мы свяжемся с вами в течение 15 минут в рабочее время.</p>
+        <a href="https://wa.me/74951234567?text=Хочу+рассчитать+стоимость+хромирования" class="btn btn--wa">Открыть WhatsApp</a>
+      </div>
+    </form>
+  </div>
+</div>
 
 <!-- ============ FLOATING MESSENGER ============ -->
 <div class="messenger">
