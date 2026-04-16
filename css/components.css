@@ -47,7 +47,7 @@
 .btn--wa:hover { background: #1ebe5c; transform: translateY(-2px); }
 .btn--tg { background: var(--tg); color: #fff; border-radius: 50px; }
 .btn--tg:hover { background: #0077b3; transform: translateY(-2px); }
-.btn--block { width: 100%; }
+.btn--block { width: 100%; white-space: normal; }
 .btn--lg { padding: 20px 40px; font-size: 16px; min-height: 60px; }
 
 /* ---------- Service cards ---------- */
@@ -560,12 +560,22 @@
 .price-table tr:hover td { background: rgba(192, 57, 43, 0.04); }
 .price-table .price { font-family: var(--font-head); font-weight: 700; color: var(--accent); white-space: nowrap; }
 
-/* Calculator tablet: single column fields */
+/* Scrollable wrapper for tables on mobile */
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: var(--radius); }
+.table-wrap .price-table { min-width: 480px; }
+
+/* Calculator tablet: single column fields, narrower tabs */
 @media (max-width: 768px) {
   .calc-fields { grid-template-columns: 1fr; }
+  .calculator__tab { font-size: 12px; padding: 14px 6px; line-height: 1.3; }
 }
 
 @media (max-width: 767px) {
+  .btn { white-space: normal; text-align: center; }
+  .btn--lg { padding: 16px 24px; font-size: 15px; }
+  .service-card { padding: 28px 24px; }
+  .service-card h3 { font-size: 20px; }
+  .service-card__price { font-size: 22px; }
   .calculator__body { padding: 24px; }
   .calculator__tab { padding: 16px 8px; font-size: 13px; }
   .calc-options label { min-width: 100px; padding: 12px; font-size: 13px; }
@@ -614,6 +624,7 @@
     flex-shrink: 0;
   }
   .calc-fields { grid-template-columns: 1fr; }
+  .calc-options label { min-width: 0; flex-basis: calc(50% - 5px); }
   .calc-result { margin: 0; border-radius: 0; border-left: 0; border-right: 0; border-bottom: 0; }
   .calc-result__cta { width: 100%; }
 }
