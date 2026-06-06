@@ -1,14 +1,13 @@
 User-agent: *
 Allow: /
 Disallow: /admin/
+Disallow: /lp/
 Disallow: /*?*
-Disallow: /404.html
 
 User-agent: Yandex
 Allow: /
 Disallow: /admin/
-Disallow: /404.html
+Disallow: /lp/
 Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term
 
 Sitemap: https://xn----7sbbfcqscungiichud1a5d.xn--p1ai/sitemap.xml
-Host: https://xn----7sbbfcqscungiichud1a5d.xn--p1ai
