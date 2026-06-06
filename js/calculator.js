@@ -301,11 +301,35 @@
       e.preventDefault();
       var fields  = modalForm.querySelector('.calc-modal__fields');
       var success = modalForm.querySelector('.form__success');
-      if (fields && success) {
-        fields.style.display = 'none';
-        success.classList.add('visible');
-      }
-      if (window.LumoAnalytics) window.LumoAnalytics.track('form_submit_from_calc');
+      var btn     = modalForm.querySelector('button[type="submit"]');
+      var summary = getSummary();
+      var details = Object.keys(summary)
+        .filter(function (k) { return k !== 'service' && k !== 'estimate' && summary[k]; })
+        .map(function (k) { return k + ': ' + summary[k]; })
+        .join(', ');
+
+      var payload = {
+        name:    (modalForm.querySelector('[name="name"]')  || {}).value || '',
+        phone:   (modalForm.querySelector('[name="phone"]') || {}).value || '',
+        service: summary.service || '',
+        estimate: summary.estimate || '',
+        comment: 'Из калькулятора. ' + details,
+        page: location.pathname,
+        source: 'calculator',
+      };
+
+      var showSuccess = function () {
+        if (fields && success) { fields.style.display = 'none'; success.classList.add('visible'); }
+      };
+
+      if (btn) { btn.dataset.label = btn.textContent; btn.disabled = true; btn.textContent = 'Отправляем…'; }
+
+      var send = window.LumoSendLead;
+      var finish = function () { showSuccess(); if (window.LumoAnalytics) window.LumoAnalytics.track('form_submit_from_calc'); };
+      var fallback = function (err) { console.warn('Calc lead send failed:', err); showSuccess(); if (window.LumoAnalytics) window.LumoAnalytics.track('form_submit_failed'); };
+
+      if (send) { send(payload).then(finish).catch(fallback); }
+      else { fallback(new Error('sendLead unavailable')); }
     });
   }
 

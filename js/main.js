@@ -94,17 +94,53 @@
   }
   document.querySelectorAll('input[type="tel"]').forEach(phoneMask);
 
+  // ---------- Lead delivery (Cloudflare Worker → Telegram) ----------
+  // Вставь сюда URL воркера, например 'https://lumo-lead.xxx.workers.dev'
+  const LEAD_ENDPOINT = '';
+
+  function sendLead(payload) {
+    if (!LEAD_ENDPOINT) return Promise.reject(new Error('endpoint not configured'));
+    return fetch(LEAD_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    }).then(r => (r.ok ? r.json() : Promise.reject(r)));
+  }
+  // Доступно другим скриптам (калькулятор)
+  window.LumoSendLead = sendLead;
+
   // ---------- Form submit ----------
   document.querySelectorAll('form[data-lead]').forEach(form => {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const success = form.querySelector('.form__success');
       const fields = form.querySelector('.form__fields');
-      if (success && fields) {
-        fields.style.display = 'none';
-        success.classList.add('visible');
-      }
-      if (window.LumoAnalytics) window.LumoAnalytics.track('form_submit');
+      const btn = form.querySelector('button[type="submit"]');
+      const get = (n) => { const el = form.querySelector('[name="' + n + '"]'); return el ? el.value : ''; };
+      const payload = {
+        name: get('name'),
+        phone: get('phone'),
+        service: get('service'),
+        comment: get('comment'),
+        company: get('company'), // honeypot
+        page: location.pathname + location.search,
+        source: 'site_form',
+      };
+
+      if (btn) { btn.dataset.label = btn.textContent; btn.disabled = true; btn.textContent = 'Отправляем…'; }
+
+      const showSuccess = () => {
+        if (success && fields) { fields.style.display = 'none'; success.classList.add('visible'); }
+      };
+
+      sendLead(payload)
+        .then(() => { showSuccess(); if (window.LumoAnalytics) window.LumoAnalytics.track('form_submit'); })
+        .catch((err) => {
+          // Не теряем клиента: показываем экран с кнопкой WhatsApp как запасной канал
+          console.warn('Lead send failed:', err);
+          showSuccess();
+          if (window.LumoAnalytics) window.LumoAnalytics.track('form_submit_failed');
+        });
     });
   });
 
