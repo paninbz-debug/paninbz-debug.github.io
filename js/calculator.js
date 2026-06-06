@@ -11,31 +11,25 @@
   /* ---------- Price data (TZ April 2026) ---------- */
   var prices = {
     plastic: {
-      grill:   { small: 15000, medium: 25000, large: 40000 },
-      mirrors: { small: 12000, medium: 18000, large: 25000 },
-      molding: { small: 8000,  medium: 15000, large: 22000 },
-      overlay: { small: 10000, medium: 18000, large: 28000 },
-      moto:    { small: 10000, medium: 16000, large: 25000 },
-      small:   { small: 5000,  medium: 8000,  large: null }
+      grill:   { small: 18000, medium: 27000, large: 38000 },
+      mirrors: { small: 8000,  medium: 12000, large: 16000 },
+      molding: { small: 6000,  medium: 10000, large: 15000 },
+      overlay: { small: 6000,  medium: 10000, large: 15000 },
+      moto:    { small: 8000,  medium: 13000, large: 20000 },
+      small:   { small: 6000,  medium: 9000,  large: null }
     },
+    // Диски — цена за КОМПЛЕКТ из 4 дисков
     discs: {
-      R15: 12000, R16: 13000, R17: 14500, R18: 16000,
-      R19: 17500, R20: 19000, R21: 20000, R22: 22000
+      R15: 60000, R16: 64000, R17: 68000, R18: 72000,
+      R19: 76000, R20: 81000, R21: 85000, R22: 90000
     },
+    // Антихром — примерно половина от стоимости хрома
     antichrome: {
       grill:   9000,
-      molding: 6000,
-      overlay: 5000,
+      molding: 3000,
+      overlay: 3000,
       small:   3000
     }
-  };
-
-  var multipliers = {
-    color:      { silver: 1.0, gold: 1.2, blackchrome: 1.3, bronze: 1.25 },
-    discType:   { stamped: 1.0, cast: 1.1, forged: 1.2 },
-    discsQty:   { 1: 1.0, 2: 1.0, 4: 0.9 },
-    discPolish: 500,
-    antiPaint:  500
   };
 
   /* ---------- Helpers ---------- */
@@ -123,42 +117,30 @@
 
   /* ---------- Calculation functions ---------- */
   function calcPlastic(panel) {
-    var type  = val(panel, 'p-type') || 'grill';
-    var size  = val(panel, 'p-size') || 'small';
-    var q     = qty(panel, 'p-qty');
-    var color = val(panel, 'p-color') || 'silver';
+    var type = val(panel, 'p-type') || 'grill';
+    var size = val(panel, 'p-size') || 'small';
+    var q    = qty(panel, 'p-qty');
     if (q === 0) return null;
 
     var base = prices.plastic[type];
     if (!base || base[size] === null) return null;
 
-    return base[size] * q * multipliers.color[color];
+    return base[size] * q;
   }
 
   function calcDiscs(panel) {
-    var dia   = val(panel, 'd-dia') || 'R17';
-    var type  = val(panel, 'd-type') || 'stamped';
-    var q     = parseInt(val(panel, 'd-qty') || '1', 10);
-    var cond  = val(panel, 'd-cond') || 'good';
-
-    var base      = prices.discs[dia];
-    var typeMul   = multipliers.discType[type];
-    var polish    = cond === 'polish' ? multipliers.discPolish : 0;
-    var qtyDisc   = multipliers.discsQty[q] || 1.0;
-
-    return (base * typeMul * q + polish * q) * qtyDisc;
+    // Цена за комплект из 4 дисков, зависит только от диаметра
+    var dia = val(panel, 'd-dia') || 'R17';
+    return prices.discs[dia] || null;
   }
 
   function calcAnti(panel) {
-    var type  = val(panel, 'a-type') || 'grill';
-    var paint = val(panel, 'a-paint') || 'matte';
-    var q     = qty(panel, 'a-qty');
+    var type = val(panel, 'a-type') || 'grill';
+    var q    = qty(panel, 'a-qty');
     if (q === 0) return null;
 
     var base = prices.antichrome[type];
-    var add  = (paint === 'body' || paint === 'ral') ? multipliers.antiPaint : 0;
-
-    return (base * q) + (add * q);
+    return base * q;
   }
 
   /* ---------- Update result display ---------- */
@@ -221,15 +203,8 @@
       var sz = val(ap, 'p-size');
       data.size     = sizeLabels[sz] || sz;
       data.quantity = qty(ap, 'p-qty');
-      var cl = val(ap, 'p-color');
-      data.color    = colorLabels[cl] || cl;
     } else if (key === 'discs') {
-      data.detail   = val(ap, 'd-dia');
-      var dt = val(ap, 'd-type');
-      data.discType = discTypeLabels[dt] || dt;
-      data.quantity = parseInt(val(ap, 'd-qty') || '1', 10);
-      var cn = val(ap, 'd-cond');
-      data.condition = condLabels[cn] || cn;
+      data.detail   = val(ap, 'd-dia') + ' (комплект 4 шт)';
     } else {
       data.detail   = selectedText(ap.querySelector('[name="a-type"]'));
       data.color    = selectedText(ap.querySelector('[name="a-paint"]'));
