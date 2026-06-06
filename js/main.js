@@ -34,13 +34,15 @@
   const nav = document.querySelector('.nav');
   if (burger && nav) {
     burger.addEventListener('click', () => {
-      burger.classList.toggle('active');
+      const open = burger.classList.toggle('active');
       nav.classList.toggle('open');
       header.classList.add('scrolled');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
     nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
       burger.classList.remove('active');
       nav.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
     }));
   }
 
