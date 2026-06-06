@@ -10,5 +10,5 @@ Disallow: /admin/
 Disallow: /404.html
 Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term
 
-Sitemap: https://lumo-chrome.ru/sitemap.xml
-Host: https://lumo-chrome.ru
+Sitemap: https://xn----7sbbfcqscungiichud1a5d.xn--p1ai/sitemap.xml
+Host: https://xn----7sbbfcqscungiichud1a5d.xn--p1ai
