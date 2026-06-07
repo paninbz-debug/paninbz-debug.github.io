@@ -207,4 +207,49 @@
 
   // ---------- Year in footer ----------
   document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---------- Tilt on hover (premium micro-interaction) ----------
+  if (!reduceMotion && window.matchMedia('(hover: hover)').matches) {
+    const MAX = 5; // градусы
+    document.querySelectorAll('.service-card, .utp-card').forEach(card => {
+      card.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease';
+      card.addEventListener('pointermove', (e) => {
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform =
+          'perspective(900px) rotateX(' + (-py * MAX).toFixed(2) + 'deg) rotateY(' +
+          (px * MAX).toFixed(2) + 'deg) translateY(-4px)';
+      });
+      card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+    });
+  }
+
+  // ---------- Кириллическая микротипографика: &nbsp; после коротких слов ----------
+  // Чтобы предлоги/союзы (в, и, с, на, по…) не висели в конце строки.
+  (function microTypography() {
+    const SKIP = new Set(['SCRIPT', 'STYLE', 'TEXTAREA', 'INPUT', 'CODE', 'PRE', 'NOSCRIPT', 'SELECT', 'OPTION']);
+    const re = /([\s(«„">])([A-Za-zА-Яа-яЁё]{1,2})[ \t]+/g;
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        let p = node.parentNode;
+        while (p && p !== document.body) {
+          if (SKIP.has(p.nodeName) || p.isContentEditable) return NodeFilter.FILTER_REJECT;
+          p = p.parentNode;
+        }
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    const nodes = [];
+    let n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    nodes.forEach(node => {
+      const v = node.nodeValue;
+      const out = v.replace(re, (m, b, w) => b + w + ' ');
+      if (out !== v) node.nodeValue = out;
+    });
+  })();
 })();
