@@ -664,3 +664,33 @@
   .marquee__track { animation: none; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; }
   .marquee img { scroll-snap-align: center; }
 }
+
+/* ---------- Accent block (фото + факт перед формой) ---------- */
+.accent { padding: clamp(64px, 8vw, 120px) 0; background: var(--bg-secondary); }
+.accent__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+.accent__media {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+}
+.accent__media img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; }
+.accent__eyebrow {
+  display: inline-block;
+  font-family: var(--font-head);
+  font-size: 13px; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.accent__text h2 { margin: 0 0 16px; }
+.accent__text p { color: var(--text-secondary); font-size: 17px; margin: 0 0 28px; max-width: 48ch; }
+@media (max-width: 767px) {
+  .accent__inner { grid-template-columns: 1fr; }
+  .accent__media { order: -1; }
+}

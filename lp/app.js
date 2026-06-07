@@ -38,7 +38,7 @@ if (form) {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(form).entries());
     const text = `Здравствуйте! Меня зовут ${data.name}. Хочу расчёт: ${data.type}. Телефон: ${data.phone}`;
-    const wa = 'https://wa.me/74951234567?text=' + encodeURIComponent(text);
+    const wa = 'https://wa.me/79951552249?text=' + encodeURIComponent(text);
     window.open(wa, '_blank');
 
     const btn = form.querySelector('button');
@@ -53,20 +53,24 @@ if (form) {
   });
 }
 
-// Reveal-on-scroll
-const io = new IntersectionObserver(entries => {
-  entries.forEach(en => {
-    if (en.isIntersecting) {
-      en.target.style.opacity = '1';
-      en.target.style.transform = 'translateY(0)';
-      io.unobserve(en.target);
-    }
-  });
-}, { threshold: 0.12 });
+// Reveal-on-scroll (с учётом prefers-reduced-motion)
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        en.target.style.opacity = '1';
+        en.target.style.transform = 'translateY(0)';
+        io.unobserve(en.target);
+      }
+    });
+  }, { threshold: 0.12 });
 
-document.querySelectorAll('.step, .work, .price-card, .story__text p').forEach((el, i) => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(24px)';
-  el.style.transition = `opacity .6s ease ${i * 0.05}s, transform .6s ease ${i * 0.05}s`;
-  io.observe(el);
-});
+  document.querySelectorAll('.step, .work, .price-card, .story__text p').forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = `opacity .6s ease ${i * 0.05}s, transform .6s ease ${i * 0.05}s`;
+    io.observe(el);
+  });
+}
+
+// Marquee — бесшовный цикл: пауза на hover уже в CSS, тут ничего не нужно

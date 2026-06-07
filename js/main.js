@@ -208,6 +208,14 @@
   // ---------- Year in footer ----------
   document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
 
+  // ---------- FAQ: одиночное раскрытие ----------
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    item.addEventListener('toggle', () => {
+      if (item.open) faqItems.forEach(o => { if (o !== item) o.open = false; });
+    });
+  });
+
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ---------- Tilt on hover (premium micro-interaction) ----------

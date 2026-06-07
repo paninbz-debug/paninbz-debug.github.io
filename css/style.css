@@ -294,29 +294,42 @@ section:nth-child(even)::after {
 
 /* ---------- Process ---------- */
 .process__grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; position: relative; }
+/* соединительная линия-таймлайн за иконками (desktop) */
+.process__grid::before {
+  content: '';
+  position: absolute;
+  top: 54px; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border) 12%, var(--border) 88%, transparent);
+  z-index: 0;
+}
 .process-step {
   position: relative;
-  padding: 28px 24px;
+  z-index: 1;
+  padding: 28px 22px;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  text-align: center;
+  text-align: left;
+  transition: var(--transition);
 }
-.process-step__num {
-  position: absolute;
-  top: -20px; left: 50%;
-  transform: translateX(-50%);
-  width: 44px; height: 44px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-light));
-  border-radius: 50%;
+.process-step:hover { border-color: rgba(174, 183, 194, 0.4); transform: translateY(-4px); }
+.process-step__icon {
+  width: 52px; height: 52px;
   display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-head);
-  font-weight: 800;
-  font-size: 18px;
-  color: #fff;
-  box-shadow: 0 4px 20px rgba(174, 183, 194, 0.5);
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(174, 183, 194, 0.18), rgba(184, 198, 219, 0.06));
+  border: 1px solid var(--border);
+  color: var(--accent);
+  margin-bottom: 18px;
 }
-.process-step h4 { margin: 12px 0 8px; }
+.process-step__step {
+  font-family: var(--font-mono);
+  font-size: 12px; letter-spacing: 0.04em;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.process-step h4 { margin: 0 0 8px; }
 .process-step p { color: var(--text-secondary); font-size: 14px; margin: 0; }
 
 /* ---------- Portfolio ---------- */
@@ -421,13 +434,16 @@ section:nth-child(even)::after {
   overflow: hidden;
   transition: var(--transition);
 }
+.faq-item:hover { border-color: rgba(174, 183, 194, 0.35); }
 .faq-item[open] { border-color: var(--accent); }
 .faq-item summary {
   padding: 22px 28px;
-  font-family: var(--font-head);
+  font-family: var(--font-body);
   font-weight: 600;
   font-size: 17px;
+  letter-spacing: -0.01em;
   cursor: pointer;
+  transition: color 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -522,6 +538,7 @@ section:nth-child(even)::after {
 @media (max-width: 1199px) {
   .services__grid, .utp__grid, .portfolio__grid { grid-template-columns: repeat(2, 1fr); }
   .process__grid { grid-template-columns: repeat(3, 1fr); }
+  .process__grid::before { display: none; }
   .footer__grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 900px) {
