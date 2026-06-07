@@ -631,34 +631,36 @@
   .calc-result__cta { width: 100%; }
 }
 
-/* ---------- Атмосферная полоса-разделитель (декор) ---------- */
-.band {
+/* ---------- Showcase marquee (движущаяся лента, декор) ---------- */
+.marquee-section { padding: clamp(48px, 7vw, 88px) 0 clamp(40px, 6vw, 72px); overflow: hidden; }
+.marquee {
   position: relative;
-  padding: clamp(90px, 13vw, 170px) 0;
-  background-color: var(--bg-primary);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  overflow: hidden;
+  margin-top: 24px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
 }
-.band::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(15,14,12,0.82), rgba(15,14,12,0.66) 50%, rgba(15,14,12,0.86));
+.marquee__track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: marquee-scroll 48s linear infinite;
 }
-.band__inner {
-  position: relative;
-  max-width: 740px;
-  margin: 0 auto;
-  text-align: center;
+.marquee:hover .marquee__track { animation-play-state: paused; }
+.marquee img {
+  flex: 0 0 auto;
+  width: clamp(220px, 26vw, 320px);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.35);
 }
-.band .eyebrow {
-  display: inline-block;
-  font-family: var(--font-head);
-  font-size: 13px; font-weight: 600;
-  letter-spacing: 0.28em; text-transform: uppercase;
-  color: var(--chrome-2);
-  margin-bottom: 16px;
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-50% - 10px)); } /* -50% минус половина gap для бесшовности */
 }
-.band h2 { margin: 0 0 14px; }
-.band p { color: var(--text-secondary); font-size: 18px; margin: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .marquee { mask-image: none; -webkit-mask-image: none; }
+  .marquee__track { animation: none; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; }
+  .marquee img { scroll-snap-align: center; }
+}
